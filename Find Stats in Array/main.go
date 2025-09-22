@@ -11,6 +11,7 @@ func smallestNumber(arr []int) int {
 	}
 	return temp
 }
+
 func biggestNumber(arr []int) int {
 	temp := arr[0]
 	for i := 1; i < len(arr); i++ {
@@ -20,6 +21,7 @@ func biggestNumber(arr []int) int {
 	}
 	return temp
 }
+
 func sum(arr []int) int {
 	temp := arr[0]
 	for i := 1; i < len(arr); i++ {
@@ -28,6 +30,7 @@ func sum(arr []int) int {
 	}
 	return temp
 }
+
 func avg(arr []int) float64 {
 	temp := arr[0]
 	for i := 1; i < len(arr); i++ {
@@ -41,11 +44,11 @@ func avg(arr []int) float64 {
 func main() {
 	array := []int{3, 5, 8, 6, 2}
 	smalest := smallestNumber(array)
-	fmt.Println(smalest)
+	fmt.Println("The smallest number is ", smalest)
 	biggest := biggestNumber(array)
-	fmt.Println(biggest)
+	fmt.Println("The biggest number is ", biggest)
 	sum := sum(array)
-	fmt.Println(sum)
+	fmt.Println("The sum is ", sum)
 	avg := avg(array)
-	fmt.Println(avg)
+	fmt.Println("The average is ", avg)
 }
