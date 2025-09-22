@@ -2,26 +2,24 @@ package main
 
 import "fmt"
 
-func prime(x int) {
+func isPrime(x int) bool {
 	if x < 2 {
-		fmt.Println("and not a prime number")
-		return
+		return false
 	}
 	for i := x - 1; i >= 2; i-- {
 		if x%i == 0 {
-			fmt.Println("and not a prime number")
-			return
+			return false
 		}
 	}
-	fmt.Println("and prime number")
+	return true
 }
 
-func oddEven(x int) {
-	if x%2 == 0 {
-		fmt.Print("Number is even ")
-	} else {
-		fmt.Print("Number is odd ")
-	}
+func isEven(x int) bool {
+	//if x%2 == 0 {
+	//	return true
+	//}
+	//return false
+	return x%2 == 0
 }
 
 func main() {
@@ -29,7 +27,17 @@ func main() {
 		fmt.Print("Enter your number: ")
 		var x int
 		fmt.Scan(&x)
-		oddEven(x)
-		prime(x)
+		//oddEven(x)
+		//prime(x)
+		if isEven(x) {
+			fmt.Print("Number is even ")
+		} else {
+			fmt.Print("Number is odd ")
+		}
+		if isPrime(x) {
+			fmt.Println("and prime number")
+		} else {
+			fmt.Println("and not a prime number")
+		}
 	}
 }
