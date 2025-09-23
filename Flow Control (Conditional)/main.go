@@ -3,14 +3,11 @@ package main
 import "fmt"
 
 func calcVolume(x, y, z int) int {
-	v := x * y * z
-	return v
+	return x * y * z
 }
+
 func cubeShape(x, y, z int) bool {
-	if x == y && y == z && x == z {
-		return true
-	}
-	return false
+	return x == y && y == z && x == z
 }
 
 func main() {
