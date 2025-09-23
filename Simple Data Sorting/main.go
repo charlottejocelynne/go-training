@@ -4,9 +4,9 @@ import (
 	"fmt"
 )
 
-func sortAsc(arr [5]int) []int {
+func sortAsc(arr []int) []int {
 	if len(arr) == 0 {
-		return arr[0:5]
+		return arr[0:len(arr)]
 	}
 	for i := 0; i < len(arr)-1; i++ {
 		for j := i + 1; j < len(arr); j++ {
@@ -17,19 +17,18 @@ func sortAsc(arr [5]int) []int {
 				temp = arr[i]
 				// return i-th element to j-th element
 				arr[i] = arr[j]
-				// return back the previous value back to j-th element
+				// assign the previous value back to j-th element
 				arr[j] = temp
 			}
 
 		}
 	}
-	return arr[0:5]
+	return arr[0:len(arr)]
 }
 
 func main() {
-	x := [5]int{5, 3, 8, 6, 2}
-	sorted := sortAsc(x)
+	x := []int{5, 3, 8, 6, 2, -1, 10, 11}
 	fmt.Println("Original Array:", x)
+	sorted := sortAsc(x)
 	fmt.Println("Sorted Ascending", sorted)
-
 }
