@@ -6,7 +6,7 @@ import (
 
 func sortAsc(arr []int) []int {
 	if len(arr) == 0 {
-		return arr[0:len(arr)]
+		return arr
 	}
 	for i := 0; i < len(arr)-1; i++ {
 		for j := i + 1; j < len(arr); j++ {
@@ -23,7 +23,7 @@ func sortAsc(arr []int) []int {
 
 		}
 	}
-	return arr[0:len(arr)]
+	return arr
 }
 
 func main() {
