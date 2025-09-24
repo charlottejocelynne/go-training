@@ -26,8 +26,8 @@ func sortAsc(arr *[]int) {
 
 func main() {
 	x := []int{5, 3, 8, 6, 2, -1, 10, 11}
-	xPointers := &x
-	fmt.Println("Original Array:", *xPointers)
-	sortAsc(xPointers)
-	fmt.Println("Sorted Ascending", *xPointers)
+	array := &x
+	fmt.Println("Original Array:", *array)
+	sortAsc(array)
+	fmt.Println("Sorted Ascending", *array)
 }
