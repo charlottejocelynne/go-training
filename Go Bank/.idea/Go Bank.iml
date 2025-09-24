@@ -6,5 +6,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="latihan" />
+    <orderEntry type="module" module-name="Pointers and References(1)" />
+    <orderEntry type="module" module-name="Flow Control (Conditional)" />
+    <orderEntry type="module" module-name="Simple Data Sorting" />
+    <orderEntry type="module" module-name="Pointers and References(2) Simple Data Sorting" />
   </component>
 </module>

@@ -21,7 +21,6 @@ func AddTransaction(
 		fmt.Println("‼️ Invalid ammount. Must be greater than 0 ‼️")
 		return balance, history
 	}
-
 	// check if type if "D" (deposit), then add amount to Balance
 	if tType == "D" {
 		balance += amount

@@ -63,7 +63,7 @@ func main() {
 			fmt.Scan(&withdraw)
 
 			// perform the transaction
-			service.AddTransaction(balance, "W", withdraw, history)
+			balance, history = service.AddTransaction(balance, "W", withdraw, history)
 
 			// head back to the main menu
 			continue
