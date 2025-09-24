@@ -1,3 +1,3 @@
-module Go_Bank
+module gobank
 
 go 1.25

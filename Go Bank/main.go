@@ -2,86 +2,15 @@ package main
 
 import (
 	"fmt"
-	"strings"
+	"gobank/model"
+	"gobank/service"
+	"gobank/utils"
 	"time"
 )
 
-// Transaction declares a custom data structure for storing transaction history
-type Transaction struct {
-	Type    string  // "Deposit" atau "Withdraw"
-	Amount  float64 // jumlah transaksi
-	Balance float64 // saldo setelah transaksi
-	Now     string
-}
-
-var balance float64
-
-// history is an array of Transaction
-var history []Transaction
-
-func addTransaction(tType string, amount float64) {
-	// make sure that amount is bigger than 0
-	if amount < 0 {
-		fmt.Println("‼️ Invalid ammount. Must be greater than 0 ‼️")
-		return
-	}
-
-	// check if type if "D" (deposit), then add amount to balance
-	if tType == "D" {
-		balance += amount
-		fmt.Println("Balance Updated! \nNew Amount: Rp", formatCurrency(balance))
-	} else if tType == "W" {
-		if amount <= balance {
-			balance -= amount
-			fmt.Println("Balance Updated! \nNew Amount:Rp", formatCurrency(balance))
-		} else {
-			fmt.Printf(" ‼️ ⚠️ Your balance is insufficient ⚠️ ‼️\nBalance: Rp%v\n", balance)
-			return
-		}
-	}
-
-	history = append(history, Transaction{
-		Type:    tType,
-		Amount:  amount,
-		Balance: balance,
-		Now:     time.Now().Format("2006-01-02 15:04:05"),
-	})
-}
-
-// showHistory to show transaction history
-func showHistory() {
-	if len(history) != 0 {
-		fmt.Println("=== Mutation History ===")
-		for _, h := range history {
-			fmt.Printf("%s | %s: Rp%s | Balance: Rp%s \n", h.Now, h.Type, formatCurrency(h.Amount), formatCurrency(h.Balance))
-		}
-	} else {
-		fmt.Println("No Transaction History")
-	}
-}
-
-// formatCurrency returns the given number, formated as currency
-func formatCurrency(n float64) string {
-	s := fmt.Sprintf("%.2f", n)
-
-	// pisahkan integer dan desimal
-	parts := strings.Split(s, ".")
-	intPart := parts[0]
-	decPart := parts[1]
-
-	// kasih koma ribuan di intPart
-	var result []string
-	for i, c := range intPart {
-		if (len(intPart)-i)%3 == 0 && i != 0 {
-			result = append(result, ",")
-		}
-		result = append(result, string(c))
-	}
-
-	return strings.Join(result, "") + "." + decPart
-}
-
 func main() {
+	var balance float64
+	var history []model.Transaction
 	// perform infinite loop, until break by the exit menu
 	for {
 		now := time.Now()
@@ -101,8 +30,8 @@ func main() {
 		case 1:
 			// show the instructions
 			fmt.Println("Your choice is 1. Balance and Mutation")
-			fmt.Printf("Your balance is: Rp%v \n", formatCurrency(balance))
-			showHistory()
+			fmt.Printf("Your balance is: Rp%v \n", utils.FormatCurrency(balance))
+			service.ShowHistory(history)
 
 			// head back to the main menu
 			fmt.Println("Press enter to continue")
@@ -118,7 +47,7 @@ func main() {
 			fmt.Scan(&deposit)
 
 			// perform the transaction
-			addTransaction("D", deposit)
+			balance, history = service.AddTransaction(balance, "D", deposit, history)
 
 			// head back to the main menu
 			fmt.Println("Press enter to continue")
@@ -134,7 +63,7 @@ func main() {
 			fmt.Scan(&withdraw)
 
 			// perform the transaction
-			addTransaction("W", withdraw)
+			service.AddTransaction(balance, "W", withdraw, history)
 
 			// head back to the main menu
 			continue
