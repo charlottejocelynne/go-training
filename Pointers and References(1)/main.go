@@ -5,11 +5,11 @@ import (
 )
 
 func increase(number *int, amount int) {
-	*number = *number + amount
+	*number += amount
 }
 
 func decrease(number *int, amount int) {
-	*number = *number + amount
+	*number -= amount
 }
 
 func main() {
